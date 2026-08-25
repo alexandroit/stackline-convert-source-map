@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; width: 100%; }
+    body { background: #22242a; color: #f5f1ed; font-family: Inter, Arial, sans-serif; overflow: hidden; }
+    .frame { display: grid; gap: 46px; grid-template-columns: 0.9fr 1.1fr; height: 100%; padding: 72px; position: relative; }
+    .panel { background: #2d3038; border: 2px solid #676b76; border-radius: 8px; min-width: 0; padding: 26px; position: relative; z-index: 2; }
+    .label { color: #f09b89; font-size: 19px; font-weight: 800; margin-bottom: 20px; }
+    .comment { color: #e8d7d2; font-family: monospace; font-size: 20px; line-height: 1.65; overflow-wrap: anywhere; }
+    .json { color: #edf0f3; font-family: monospace; font-size: 19px; line-height: 1.65; white-space: pre; }
+    .accent { color: #52c6be; }
+    .value { color: #efb83f; }
+    .arrow { color: #f09b89; font-size: 64px; font-weight: 300; left: calc(45% - 22px); position: absolute; top: 265px; z-index: 3; }
+    .title { bottom: 28px; color: #b7bac2; font-size: 17px; left: 72px; position: absolute; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <section class="panel"><div class="label">INLINE COMMENT</div><div class="comment">//# sourceMappingURL=<span class="accent">data:application/json;charset=utf-8;base64,</span>eyJ2ZXJzaW9uIjoz...</div></section>
+    <section class="panel"><div class="label">DECODED SOURCE MAP</div><div class="json">{
+  "version": <span class="value">3</span>,
+  "file": "bundle.js",
+  "sources": ["src/input.ts"],
+  "mappings": "AAAA"
+}</div></section>
+    <div class="arrow">&#8594;</div>
+    <div class="title">@stackline/convert-source-map · linear comment discovery</div>
+  </div>
+</body>
+</html>

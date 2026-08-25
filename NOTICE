@@ -1,0 +1,9 @@
+@stackline/convert-source-map is an independent maintained fork of
+convert-source-map by Thorsten Lorenz.
+
+Original project: https://github.com/thlorenz/convert-source-map
+Original npm package: https://www.npmjs.com/package/convert-source-map
+Original license: MIT
+
+The original copyright and permission notice are preserved in LICENSE.
+Stackline is not affiliated with or endorsed by the original author.

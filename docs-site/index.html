@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@stackline/convert-source-map - Source map comment parser</title>
+    <meta name="description" content="Encode, decode, discover, and remove Source Map v3 comments with a maintained convert-source-map-compatible API and linear source scanning.">
+    <meta name="keywords" content="convert source map, sourceMappingURL, Source Map v3, JavaScript parser, TypeScript, browser bundler, Stackline, npm">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <link rel="canonical" href="https://alexandro.net/docs/vanilla/convert-source-map/">
+    <link rel="alternate" type="text/plain" href="./llms.txt" title="LLM summary">
+    <link rel="alternate" type="text/plain" href="./llms-full.txt" title="Full LLM reference">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@stackline/convert-source-map">
+    <meta property="og:description" content="A maintained, typed source-map comment parser with linear discovery.">
+    <meta property="og:url" content="https://alexandro.net/docs/vanilla/convert-source-map/">
+    <meta property="og:image" content="https://alexandro.net/docs/vanilla/convert-source-map/assets/convert-source-map-flow.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@stackline/convert-source-map">
+    <meta name="twitter:description" content="Run source-map comment conversion in the browser.">
+    <meta name="twitter:image" content="https://alexandro.net/docs/vanilla/convert-source-map/assets/convert-source-map-flow.png">
+    <meta name="theme-color" content="#a23e2c">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "@stackline/convert-source-map",
+        "version": "{{PACKAGE_VERSION}}",
+        "description": "A maintained convert-source-map-compatible Source Map v3 comment parser.",
+        "codeRepository": "https://github.com/alexandroit/stackline-convert-source-map",
+        "downloadUrl": "https://www.npmjs.com/package/@stackline/convert-source-map",
+        "license": "https://opensource.org/license/mit",
+        "programmingLanguage": ["JavaScript", "TypeScript"],
+        "runtimePlatform": ["Node.js", "Web browser"],
+        "author": { "@type": "Person", "name": "Alexandro Paixao Marques", "url": "https://github.com/alexandroit" }
+      }
+    </script>
+    <script defer src="./package.js"></script>
+    <script defer src="./analytics.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#playground">Skip to converter</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="@stackline/convert-source-map documentation home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>@stackline/convert-source-map</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#playground">Converter</a><a href="#api">API</a>
+        <a href="https://github.com/alexandroit/stackline-convert-source-map">GitHub</a>
+        <a href="https://www.npmjs.com/package/@stackline/convert-source-map">npm</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="product-intro" aria-labelledby="page-title">
+        <div class="intro-content">
+          <p class="eyebrow">Source Map v3 comment conversion</p>
+          <h1 id="page-title">@stackline/convert-source-map</h1>
+          <p>Encode, decode, find, and remove source-map comments with the established API, first-party types, and a linear source scanner.</p>
+          <div class="install-row">
+            <code>npm install @stackline/convert-source-map</code>
+            <button class="compact-button" type="button" data-copy="npm install @stackline/convert-source-map">Copy</button>
+          </div>
+          <div class="release-line" aria-label="Compatibility summary">
+            <span>v{{PACKAGE_VERSION}}</span><span>Zero runtime dependencies</span><span>Node 12+</span><span>TypeScript 3.9-7.0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="tool-band" id="playground" aria-labelledby="tool-title">
+        <div class="section-inner wide">
+          <div class="section-heading">
+            <div><p class="eyebrow">Runs the production browser bundle</p><h2 id="tool-title">Source-map converter</h2></div>
+            <button class="icon-button" id="reset-button" type="button" title="Reset converter" aria-label="Reset converter">&#8635;</button>
+          </div>
+          <div class="toolbar">
+            <div class="segmented-control" role="group" aria-label="Conversion mode">
+              <button type="button" data-mode="encode" aria-pressed="true">Encode JSON</button>
+              <button type="button" data-mode="decode" aria-pressed="false">Decode comment</button>
+              <button type="button" data-mode="remove" aria-pressed="false">Remove comments</button>
+            </div>
+            <div class="preset-group" aria-label="Input presets">
+              <button class="secondary-button" type="button" data-preset="unicode">Unicode map</button>
+              <button class="secondary-button" type="button" data-preset="block">Block comment</button>
+              <button class="secondary-button" type="button" data-preset="source">Source file</button>
+            </div>
+            <button class="primary-button" id="process-button" type="button">Convert</button>
+          </div>
+          <div class="workspace-grid">
+            <section class="editor-panel" aria-labelledby="input-label">
+              <header><h3 id="input-label">Input</h3><span id="input-kind">Source Map JSON</span></header>
+              <textarea id="source-input" spellcheck="false" aria-label="Converter input"></textarea>
+            </section>
+            <section class="editor-panel" aria-labelledby="output-label">
+              <header><h3 id="output-label">Output</h3><button class="text-button" id="copy-output-button" type="button">Copy</button></header>
+              <pre id="result-output" tabindex="0" aria-live="polite"></pre>
+            </section>
+          </div>
+          <div class="status-bar" role="status" aria-live="polite">
+            <span class="status-indicator" id="status-indicator" aria-hidden="true"></span><span id="status-text">Ready</span>
+            <span class="status-separator" aria-hidden="true"></span><span id="input-count">0 input bytes</span>
+            <span class="status-separator" aria-hidden="true"></span><span id="output-count">0 output bytes</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-band" aria-labelledby="migration-title">
+        <div class="section-inner content-grid">
+          <div><p class="eyebrow">Lowest-change migration</p><h2 id="migration-title">Keep the original import name</h2><p>Use an npm alias when existing build code requires <code>convert-source-map</code>.</p></div>
+          <div class="code-surface"><pre><code>npm install convert-source-map@npm:@stackline/convert-source-map</code></pre><pre><code>const convert = require('convert-source-map');</code></pre></div>
+        </div>
+      </section>
+
+      <section class="content-band muted" id="api" aria-labelledby="api-title">
+        <div class="section-inner">
+          <div class="section-heading"><div><p class="eyebrow">Public contract</p><h2 id="api-title">Conversion and scanning API</h2></div><a class="inline-link" href="https://github.com/alexandroit/stackline-convert-source-map/blob/main/README.md#api">Full reference</a></div>
+          <div class="api-table-wrapper"><table><thead><tr><th>API</th><th>Purpose</th><th>Return</th></tr></thead><tbody>
+            <tr><td><code>fromComment(comment)</code></td><td>Decode an inline data URI</td><td>Converter</td></tr>
+            <tr><td><code>fromSource(source)</code></td><td>Find the last inline map</td><td>Converter or null</td></tr>
+            <tr><td><code>removeComments(source)</code></td><td>Remove inline maps in one scan</td><td>String</td></tr>
+            <tr><td><code>fromObject(map)</code></td><td>Create a mutable converter</td><td>Converter</td></tr>
+            <tr><td><code>toComment(options?)</code></td><td>Create line or block comments</td><td>String</td></tr>
+          </tbody></table></div>
+        </div>
+      </section>
+
+      <section class="content-band" aria-labelledby="proof-title">
+        <div class="section-inner proof-grid"><div><p class="eyebrow">Release evidence</p><h2 id="proof-title">Parser behavior is measured</h2></div>
+          <dl class="proof-list"><div><dt>19</dt><dd>focused regression tests</dd></div><div><dt>10</dt><dd>differential upstream scenarios</dd></div><div><dt>500k</dt><dd>malformed lines in the resource test</dd></div><div><dt>0</dt><dd>runtime dependencies</dd></div></dl>
+        </div>
+      </section>
+
+      <section class="resource-band" aria-labelledby="resources-title">
+        <div class="section-inner resource-grid"><div><p class="eyebrow">Machine-readable documentation</p><h2 id="resources-title">AI and crawler resources</h2><p>#Stackline #SourceMaps #JavaScript #OpenSource #NPM #AIReadyDocs</p></div>
+          <nav aria-label="Documentation resources"><a href="./llms.txt">llms.txt</a><a href="./llms-full.txt">llms-full.txt</a><a href="https://alexandro.net/sitemap.xml">Public sitemap</a></nav>
+        </div>
+      </section>
+    </main>
+    <footer><div><strong>@stackline/convert-source-map</strong><span>MIT licensed. Independent and not affiliated with the upstream maintainers.</span></div>
+      <nav aria-label="Footer navigation"><a href="https://alexandro.net/docs/open-source/">All packages</a><a href="./guides/migration.md">Migration</a><a href="https://github.com/alexandroit/stackline-convert-source-map/blob/main/SECURITY.md">Security</a><a href="https://github.com/alexandroit/stackline-convert-source-map/blob/main/CHANGELOG.md">Changelog</a></nav>
+    </footer>
+  </body>
+</html>

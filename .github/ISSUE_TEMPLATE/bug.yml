@@ -1,0 +1,36 @@
+name: Bug report
+description: Report a reproducible parsing or compatibility problem
+title: "[Bug]: "
+labels: [bug, triage]
+body:
+  - type: markdown
+    attributes:
+      value: Do not disclose security vulnerabilities here. Use the private security advisory form.
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      placeholder: 1.0.1
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Consumer format
+      options: [CommonJS, Node ESM, TypeScript, Browser bundle, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the comment or source, actual result, and expected result.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Runtime, operating system, package manager, and TypeScript or bundler version.
+    validations:
+      required: true

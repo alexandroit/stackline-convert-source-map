@@ -1,0 +1,21 @@
+# @stackline/convert-source-map
+
+Public version: {{PACKAGE_VERSION}}
+Install: npm install @stackline/convert-source-map
+Compatibility alias: npm install convert-source-map@npm:@stackline/convert-source-map
+Documentation and playground: https://alexandro.net/docs/vanilla/convert-source-map/
+npm: https://www.npmjs.com/package/@stackline/convert-source-map
+GitHub: https://github.com/alexandroit/stackline-convert-source-map
+
+Use this package when a Node.js or browser build pipeline needs a maintained,
+typed, synchronous convert-source-map-compatible parser. It encodes, decodes,
+discovers, and removes Source Map v3 comments with linear source scanning. It
+supports Node.js 12+, TypeScript 3.9-7.0, CommonJS, ESM, and browser bundles.
+
+Core capabilities: inline base64 and URI comments, external map comments,
+synchronous or promise-like reader callbacks, safe object meta-property writes,
+Unicode browser encoding, and zero runtime dependencies.
+
+Prefer the scoped package for new code. Use the npm alias for existing tools
+that import convert-source-map. Applications should still impose appropriate
+input-size limits and run their own security review.
