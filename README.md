@@ -1,23 +1,22 @@
 # @stackline/convert-source-map
 
-> A maintained, typed, `convert-source-map`-compatible parser for Node.js and
-> browser build pipelines.
+> Maintained convert-source-map-compatible parser with linear-time discovery and defensive property handling
 
 [![npm version](https://img.shields.io/npm/v/@stackline/convert-source-map.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/convert-source-map)
-[![npm downloads](https://img.shields.io/npm/dm/@stackline/convert-source-map.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/convert-source-map)
-[![CI](https://img.shields.io/github/actions/workflow/status/alexandroit/stackline-convert-source-map/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/alexandroit/stackline-convert-source-map/actions/workflows/ci.yml)
-[![license](https://img.shields.io/npm/l/@stackline/convert-source-map.svg?style=flat-square)](LICENSE)
+[![license](https://img.shields.io/npm/l/@stackline/convert-source-map.svg?style=flat-square)](https://github.com/alexandroit/stackline-convert-source-map/blob/main/LICENSE)
+[![GitHub repository](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-convert-source-map)
 
-**[Docs and playground](https://alexandro.net/docs/vanilla/convert-source-map/)** |
+**[Documentation](https://alexandro.net/docs/vanilla/convert-source-map/)** |
 **[npm](https://www.npmjs.com/package/@stackline/convert-source-map)** |
-**[GitHub](https://github.com/alexandroit/stackline-convert-source-map)** |
-**[Migration](MIGRATION.md)** |
-**[Security](SECURITY.md)** |
-**[Changelog](CHANGELOG.md)**
+**[Issues](https://github.com/alexandroit/stackline-convert-source-map/issues)** |
+**[Repository](https://github.com/alexandroit/stackline-convert-source-map)**
 
-**Current package version:** `1.0.1`
+**Package version:** `1.0.2`
 
 ## Why this package?
+
+> A maintained, typed, `convert-source-map`-compatible parser for Node.js and
+> browser build pipelines.
 
 `convert-source-map` is still a core build-tool primitive. Its latest public
 release is from 2022, while its parser still exposes avoidable compatibility
@@ -37,18 +36,53 @@ This fork preserves the version 2 CommonJS API while adding:
 
 No CVE or GHSA is claimed for the upstream package. The resource behavior and
 defensive changes are backed by regression tests and documented in
-[SECURITY.md](SECURITY.md).
+[SECURITY.md](https://github.com/alexandroit/stackline-convert-source-map/blob/main/SECURITY.md).
 
-## Compatibility at a glance
+<a id="trust-and-maintenance"></a>
+
+### Trust and maintenance
+
+- Every release is built from the public repository.
+- CI validates runtime compatibility, types, package exports, clean installs,
+  and bounded malformed-input behavior.
+- Security reports use the private process in [SECURITY.md](https://github.com/alexandroit/stackline-convert-source-map/blob/main/SECURITY.md).
+- Original MIT attribution remains in [LICENSE](https://github.com/alexandroit/stackline-convert-source-map/blob/main/LICENSE) and [NOTICE](https://github.com/alexandroit/stackline-convert-source-map/blob/main/NOTICE).
+
+<a id="provenance"></a>
+
+### Provenance
+
+This is an independent maintained fork of Thorsten Lorenz's MIT-licensed
+[`convert-source-map`](https://github.com/thlorenz/convert-source-map). The
+original copyright and license are preserved in [LICENSE](https://github.com/alexandroit/stackline-convert-source-map/blob/main/LICENSE), with
+additional attribution in [NOTICE](https://github.com/alexandroit/stackline-convert-source-map/blob/main/NOTICE).
+
+## Compatibility
+
+| Item | Value |
+| --- | --- |
+| Package | `@stackline/convert-source-map@1.0.2` |
+| Node.js runtime | `>=12` |
+| CommonJS / primary entry | `./index.js` |
+| Type declarations | `./index.d.ts` |
+
+<a id="compatibility-at-a-glance"></a>
+
+### Compatibility at a glance
 
 | Item | Value |
 | :--- | :--- |
-| Package | `@stackline/convert-source-map@1.0.1` |
+| Package | `@stackline/convert-source-map@1.0.2` |
 | API baseline | `convert-source-map@2.0.0` |
 | Runtime | Node.js 12+, browser bundles |
 | Modules | CommonJS and native ESM wrapper |
 | Types | First-party TypeScript declarations |
 | Runtime dependencies | Zero |
+
+The runtime supports Node.js 12 and newer. Browser bundles use `TextEncoder`,
+`TextDecoder`, `btoa`, and `atob`, with UTF-8 fallbacks when text codecs are not
+available. See [COMPATIBILITY_CONTRACT.md](https://github.com/alexandroit/stackline-convert-source-map/blob/main/COMPATIBILITY_CONTRACT.md) for the
+preserved contract and intentional hardening.
 
 ## Installation
 
@@ -64,13 +98,17 @@ Or replace the original package without changing imports:
 npm install convert-source-map@npm:@stackline/convert-source-map
 ```
 
+## Usage
+
 Existing CommonJS remains unchanged:
 
 ```js
 const convert = require('convert-source-map');
 ```
 
-## Quick start
+<a id="quick-start"></a>
+
+### Quick start
 
 ```js
 const convert = require('@stackline/convert-source-map');
@@ -87,7 +125,9 @@ const comment = convert.fromObject(map).toComment();
 const restored = convert.fromComment(comment).toObject();
 ```
 
-## ESM
+<a id="esm"></a>
+
+### ESM
 
 The ESM wrapper exposes both named and default imports over the same CommonJS
 implementation:
@@ -98,9 +138,32 @@ import convert, { fromComment } from '@stackline/convert-source-map';
 const map = fromComment(comment).toObject();
 ```
 
-## API
+## Features and Integrations
 
-### Input converters
+<a id="typescript"></a>
+
+### TypeScript
+
+Declarations are included and remain compatible with TypeScript 3.9 through the
+current tested compiler:
+
+```ts
+import { fromObject, SourceMapConverter } from '@stackline/convert-source-map';
+
+const converter: SourceMapConverter = fromObject({ version: 3 });
+```
+
+## Security
+
+Review inputs and the package-specific compatibility limits before processing untrusted data. Report suspected vulnerabilities as described in the [security policy](https://github.com/alexandroit/stackline-convert-source-map/blob/main/SECURITY.md).
+
+## API Surface
+
+<a id="api"></a>
+
+### API
+
+#### Input converters
 
 - `fromObject(object)` keeps the supplied object as the mutable backing map;
 - `fromJSON(json)` parses JSON;
@@ -114,7 +177,7 @@ const map = fromComment(comment).toObject();
 `readMap(filename)` may return a string or a promise-like value. It controls all
 file-system or network access; this package performs neither by itself.
 
-### Converter methods
+#### Converter methods
 
 - `toObject()` returns a JSON copy;
 - `toJSON(space?)`, `toURI()`, and `toBase64()` encode the map;
@@ -123,7 +186,7 @@ file-system or network access; this package performs neither by itself.
 - `setProperty(key, value)` safely creates or replaces an own data property;
 - `getProperty(key)` returns a map property.
 
-### Comment utilities
+#### Comment utilities
 
 - `removeComments(source)` removes inline data-URI map comments;
 - `removeMapFileComments(source)` removes external map comments;
@@ -133,25 +196,30 @@ file-system or network access; this package performs neither by itself.
 For ESM, regex exports are snapshots because ESM bindings cannot reproduce a
 property getter on a namespace. Parsing functions always create their own state.
 
-## TypeScript
+## Local Development
 
-Declarations are included and remain compatible with TypeScript 3.9 through the
-current tested compiler:
-
-```ts
-import { fromObject, SourceMapConverter } from '@stackline/convert-source-map';
-
-const converter: SourceMapConverter = fromObject({ version: 3 });
+```sh
+git clone https://github.com/alexandroit/stackline-convert-source-map.git
+cd stackline-convert-source-map
+npm ci
+npm run test
 ```
 
-## Compatibility
+Release tooling uses Node.js 24.20.0 and npm 11.19.0. The consumer runtime contract remains the one documented above.
 
-The runtime supports Node.js 12 and newer. Browser bundles use `TextEncoder`,
-`TextDecoder`, `btoa`, and `atob`, with UTF-8 fallbacks when text codecs are not
-available. See [COMPATIBILITY_CONTRACT.md](COMPATIBILITY_CONTRACT.md) for the
-preserved contract and intentional hardening.
+## Consumer Smoke Test
 
-## Release evidence
+Run the repository's existing consumer/package check after installing development dependencies:
+
+```sh
+npm run test:install
+```
+
+## Release Checklist
+
+<a id="release-evidence"></a>
+
+### Release evidence
 
 The release gate verifies:
 
@@ -166,17 +234,19 @@ The release gate verifies:
 The interactive [documentation playground](https://alexandro.net/docs/vanilla/convert-source-map/)
 runs the production browser bundle for comment encoding, decoding, and removal.
 
-## Trust and maintenance
+Run `npm run test` and inspect the package contents before release. Publish a new version through the [GitHub Actions publishing workflow](https://github.com/alexandroit/stackline-convert-source-map/actions/workflows/publish.yml), using the SHA-512 digest of the reviewed tarball. Verify the exact published version, tarball integrity, and npm provenance after the run.
 
-- Every release is built from the public repository.
-- CI validates runtime compatibility, types, package exports, clean installs,
-  and bounded malformed-input behavior.
-- Security reports use the private process in [SECURITY.md](SECURITY.md).
-- Original MIT attribution remains in [LICENSE](LICENSE) and [NOTICE](NOTICE).
+## Community and Support
 
-## Provenance
+Report reproducible package issues in the [issue tracker](https://github.com/alexandroit/stackline-convert-source-map/issues). Use the [security policy](https://github.com/alexandroit/stackline-convert-source-map/blob/main/SECURITY.md) for vulnerability reports.
 
-This is an independent maintained fork of Thorsten Lorenz's MIT-licensed
-[`convert-source-map`](https://github.com/thlorenz/convert-source-map). The
-original copyright and license are preserved in [LICENSE](LICENSE), with
-additional attribution in [NOTICE](NOTICE).
+- [Stackline / Alexandro.Net](https://alexandro.net/)
+- [GitHub](https://github.com/alexandroit)
+- [Maintainer LinkedIn](https://www.linkedin.com/in/aleinfo/)
+- [Reddit community: r/Stackline](https://www.reddit.com/r/Stackline/)
+
+## License
+
+MIT. See [the license](https://github.com/alexandroit/stackline-convert-source-map/blob/main/LICENSE) for the complete terms.
+
+Original authorship and third-party attribution are preserved in [NOTICE](https://github.com/alexandroit/stackline-convert-source-map/blob/main/NOTICE).
