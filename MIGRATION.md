@@ -29,7 +29,7 @@ The equivalent manifest entry is:
 ```json
 {
   "dependencies": {
-    "convert-source-map": "npm:@stackline/convert-source-map@^1.0.0"
+    "convert-source-map": "npm:@stackline/convert-source-map@^1.0.2"
   }
 }
 ```
