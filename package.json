@@ -1,18 +1,21 @@
 {
   "name": "@stackline/convert-source-map",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Maintained convert-source-map-compatible parser with linear-time discovery and defensive property handling",
   "keywords": [
+    "stackline",
+    "npm-package",
     "convert-source-map",
+    "parser",
+    "typescript",
+    "nodejs",
     "source-map",
     "sourcemap",
     "base64",
     "data-uri",
     "browser",
-    "typescript",
     "commonjs",
-    "security",
-    "stackline"
+    "security"
   ],
   "license": "MIT",
   "author": {
