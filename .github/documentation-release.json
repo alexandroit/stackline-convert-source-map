@@ -1,0 +1,31 @@
+{
+  "repository": "alexandroit/stackline-convert-source-map",
+  "packages": [
+    {
+      "name": "@stackline/convert-source-map",
+      "path": "README.md",
+      "version": "1.0.3",
+      "baselineVersion": "1.0.2",
+      "keywords": [
+        "stackline",
+        "npm-package",
+        "convert-source-map",
+        "parser",
+        "typescript",
+        "nodejs",
+        "source-map",
+        "sourcemap",
+        "base64",
+        "data-uri",
+        "browser",
+        "commonjs",
+        "security"
+      ],
+      "homepage": "https://alexandro.net/docs/vanilla/convert-source-map/",
+      "baselineTarball": "https://registry.npmjs.org/@stackline/convert-source-map/-/convert-source-map-1.0.2.tgz",
+      "baselineIntegrity": "sha512-GaEauAJ4ziaAAFRK6ybmp9Ty+hmxZQo6st4E2Lf4QbhvCWgDlWJdvsihFAsPc4eM9DdGfbcWVncvop5jtgjULQ==",
+      "expectedSha512": "c123a14cdb808ffdacbd7f9f34d3f049e4147878b2df97609c22ef01d4d74f8439bdea3f7ed1935bc355099f59987e26eee6fe3f3c92a498f8c1d46c5592b4f3",
+      "tag": "docs-stackline-convert-source-map-v1.0.3"
+    }
+  ]
+}
