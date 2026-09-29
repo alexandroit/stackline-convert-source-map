@@ -4,13 +4,13 @@
 
 [![npm version](https://img.shields.io/npm/v/@stackline/convert-source-map.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/convert-source-map)
 [![license](https://img.shields.io/npm/l/@stackline/convert-source-map.svg?style=flat-square)](https://github.com/alexandroit/stackline-convert-source-map)
-[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fstackline-convert-source-map-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-convert-source-map)
+[![GitHub repository](https://img.shields.io/badge/GitHub-repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-convert-source-map)
 [![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vanilla/convert-source-map/)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
 **[Documentation](https://alexandro.net/docs/vanilla/convert-source-map/)** | **[npm](https://www.npmjs.com/package/@stackline/convert-source-map)** | **[Issues](https://github.com/alexandroit/stackline-convert-source-map/issues)** | **[Repository](https://github.com/alexandroit/stackline-convert-source-map)**
 
-**Current package version:** `1.0.3`
+**Current package version:** `1.0.4`
 
 ---
 
@@ -62,7 +62,7 @@ additional attribution in [NOTICE](https://github.com/alexandroit/stackline-conv
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/convert-source-map@1.0.3` |
+| Package | `@stackline/convert-source-map@1.0.4` |
 | Node.js runtime | `>=12` |
 | CommonJS / primary entry | `./index.js` |
 | Type declarations | `./index.d.ts` |
@@ -73,7 +73,7 @@ additional attribution in [NOTICE](https://github.com/alexandroit/stackline-conv
 
 | Item | Value |
 | :--- | :--- |
-| Package | `@stackline/convert-source-map@1.0.3` |
+| Package | `@stackline/convert-source-map@1.0.4` |
 | API baseline | `convert-source-map@2.0.0` |
 | Runtime | Node.js 12+, browser bundles |
 | Modules | CommonJS and native ESM wrapper |
