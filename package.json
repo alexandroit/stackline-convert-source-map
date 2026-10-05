@@ -97,7 +97,7 @@
     "esbuild": "0.28.2",
     "eslint": "10.9.1",
     "inline-source-map": "npm:@stackline/inline-source-map@^1.0.0",
-    "publint": "0.3.24",
+    "publint": "0.3.25",
     "typescript": "7.0.2"
   }
 }
